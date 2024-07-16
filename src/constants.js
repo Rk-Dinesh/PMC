@@ -33,20 +33,20 @@ export const profession = 'Software Developer';
 export const photoURL = 'https://media.licdn.com/dms/image/D5603AQEDjPydFO9Z2A/profile-displayphoto-shrink_200_200/0/1683617907233?e=1726704000&v=beta&t=VqAmZII4To8buI_Zj6t-Z3JMuv0i2iFyCSdfB1qeEpU';
 
 // //PAYPAL
-// export const paypalPlanIdOne = "P-1EM732768S920784HMWKW3OA";
-// export const paypalPlanIdTwo = "P-8T744865W27080359MWOCE5Q";
+export const paypalPlanIdOne = "";
+export const paypalPlanIdTwo = "";
 
 // //RAZORPAY
-// export const razorpayKeyId = "rzp_test_uqALjZHyTyuiOm";
-// export const razorpayPlanIdOne = "plan_NMvvtDfznbRp6V";
-// export const razorpayPlanIdTwo = "plan_NMRc9HARBQRLWA";
+export const razorpayKeyId = "";
+export const razorpayPlanIdOne = "";
+export const razorpayPlanIdTwo = "";
 
 //STRIPE
 export const stripePlanIdOne = "price_1Pd8mq01PbsRdqnLHOa9bhU1";
-//export const stripePlanIdTwo = "price_1OTo7eSDXmLtVnVeBbn82U5B";
+export const stripePlanIdTwo = "";
 
 //PAYSTACK
-// export const paystackPlanIdOne = "PLN_ouqmm8eo6i2k9k8";
-// export const paystackPlanIdTwo = "PLN_1v1xqb8io9t5lis";
-// export const amountInZarOne = '170';
-// export const amountInZarTwo = '1871';
+export const paystackPlanIdOne = "";
+export const paystackPlanIdTwo = "";
+export const amountInZarOne = '';
+export const amountInZarTwo = '';
