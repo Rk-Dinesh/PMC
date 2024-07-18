@@ -24,18 +24,24 @@ const Create = () => {
 
     let type = sessionStorage.getItem('type');
 
-    useEffect(() => {
-        const userType = sessionStorage.getItem('type');
-        if (userType !== 'free') {
-          setPaidMember(true);
-          setLableText('Select number of sub topics');
-          getDetails();
-          getMonthlyNavigationCount()
-          
-        } else {
-          getCourse();
-        }
-      }, []);
+ 
+
+      useEffect(() => {
+        const fetchData = async () => {
+            const userType = sessionStorage.getItem('type');
+            if (userType !== 'free') {
+                setPaidMember(true);
+                setLableText('Select number of sub topics');
+                await getDetails();
+                await getMonthlyNavigationCount();
+                await getMonthlyNavigationCount() 
+            } else {
+                await getCourse();
+            }
+        };
+
+        fetchData();
+    }, []);
 
     async function getDetails() {
         const dataToSend = {
@@ -70,22 +76,39 @@ const Create = () => {
     };
 
     async function getMonthlyNavigationCount() {
-        try {
-          const response = await axios.post(`${serverURL}/api/getcountplan`, {
-            userid: sessionStorage.getItem('uid')
-          });
-          setMonthlyNavigationCount(response.data.count);
-        } catch (error) {
-          console.error(error);
-        }
-      }
+        
+        const userId = sessionStorage.getItem('uid');
+        console.log(userId);
 
-      async function updateMonthlyNavigationCount(userid, count) {
+        const postURL = serverURL + `/api/getcountplan?user=${userId}`;
         try {
-          await axios.post(`${serverURL}/api/updatecount`, {
-            userid,
-            count
-          });
+            const response = await axios.get(postURL);
+            const responseData = response.data
+            console.log(responseData);
+            console.log(responseData[0].count);
+            setMonthlyNavigationCount(responseData[0].count);
+            
+            
+        } catch (error) {
+            //DO NOTHING
+        }
+    };
+
+
+     const updateCount = async () => {
+        const user = sessionStorage.getItem('uid');
+        
+        const dataToSend = {
+          user: user,
+          count: monthlyNavigationCount - 1
+        };
+
+        console.log("hello",dataToSend);
+      
+        const postURL = serverURL + '/api/updatecount';
+        try {
+          const response = await axios.post(postURL, dataToSend);
+          console.log(response.data);
         } catch (error) {
           console.error(error);
         }
@@ -225,12 +248,13 @@ const Create = () => {
               setProcessing(false);
           
               // Check the type of subscription and the end date before navigating
-              if (type === 'free' && courses.length === 1) {
+              if (type === 'free' && courses.length >= 1) {
                 showToast('Please subscribe to access more courses.');
-              } else if (type === 'monthly' && new Date(endDate * 1000) > new Date()) {
+            } else if (type === 'Monthly Plan' && new Date(endDate * 1000) > new Date()) {
                 if (monthlyNavigationCount > 0) {
                   setMonthlyNavigationCount(monthlyNavigationCount - 1);
-                  updateMonthlyNavigationCount(sessionStorage.getItem('uid'), monthlyNavigationCount - 1);
+                  console.log(monthlyNavigationCount);
+                 await updateCount();
                   navigate('/topics', {
                     state: {
                       jsonData: parsedJson,
@@ -241,7 +265,7 @@ const Create = () => {
                 } else {
                   showToast('Your monthly plan has reached the limit of navigations. Please upgrade to yearly plan for unlimited access.');
                 }
-              } else if (type === 'yearly' && new Date(endDate * 1000) > new Date()) {
+              } else if (type === 'Yearly Plan' && new Date(endDate * 1000) > new Date()) {
                 navigate('/topics', {
                   state: {
                     jsonData: parsedJson,
