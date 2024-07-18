@@ -17,7 +17,13 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 //INITIALIZE
 const app = express();
-app.use(cors());
+app.use(cors({
+    "Access-Control-Allow-Origin": "*",
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 204,
+    "Access-Control-Allow-Headers": "Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers"
+}));
 const PORT = process.env.PORT;
 app.use(bodyParser.json());
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -82,14 +88,77 @@ const contactShema = new mongoose.Schema({
     date: { type: Date, default: Date.now },
 });
 
+const planCountShema = new mongoose.Schema({
+    user: String,
+    count:Number
+});
+
 //MODEL
 const User = mongoose.model('User', userSchema);
 const Course = mongoose.model('Course', courseSchema);
 const Subscription = mongoose.model('Subscription', subscriptionSchema);
 const Contact = mongoose.model('Contact', contactShema);
 const Admin = mongoose.model('Admin', adminSchema);
+const Count = mongoose.model('Count',planCountShema)
 
 //REQUEST
+app.post('/api/countplan', async (req, res) => {
+    const { user, count } = req.body;
+    
+    try {
+        // Check if a document with the same user already exists
+        const existingUser = await Count.findOne({ user });
+        
+        if (existingUser) {
+            // If the user already exists, update the count to 5
+            existingUser.count = 5;
+            await existingUser.save();
+            return res.json({ success: true, message: 'Count updated to 5 for existing user' });
+        }
+
+        // If no document is found, create a new one
+        const course_count = new Count({ user, count });
+        await course_count.save();
+        
+        res.json({ success: true, message: 'Count created successfully' });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+});
+
+
+
+app.post('/api/updatecount', async (req, res) => {
+    const { user, count } = req.body;
+
+    try {
+        const result = await Count.findOneAndUpdate(
+            { user: user },
+            { $set: { count: count } },
+            { new: true }  
+        );
+
+        if (result) {
+            res.json({ success: true, message: 'Count updated successfully' });
+        } else {
+            res.status(404).json({ success: false, message: 'User not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+});
+
+app.get('/api/getcountplan', async (req, res) => {
+    try {
+        const { user } = req.query;
+        await Count.find({ user: user }).then((result) => {
+            res.json(result);
+        });
+    } catch (error) {
+        res.status(500).send('Internal Server Error');
+    }
+});
+
 
 //SIGNUP
 app.post('/api/signup', async (req, res) => {
@@ -449,7 +518,7 @@ app.post('/api/sendcertificate', async (req, res) => {
         secure: true,
         auth: {
             user: process.env.EMAIL,
-            pass: process.env.PASSWORD,
+            pass: process.env.PASSWORD, 
         },
     });
 

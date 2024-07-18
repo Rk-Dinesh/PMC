@@ -22,6 +22,22 @@ const Success = () => {
         getDetails();
     }, []);
 
+    async function countplan() {
+        const user = sessionStorage.getItem('uid');
+        const dataToSend = {
+          user: user,
+          count: 5
+        };
+      
+        const postURL = serverURL + '/api/countplan';
+        try {
+          const response = await axios.post(postURL, dataToSend);
+          console.log(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
     async function getDetails() {
         if (sessionStorage.getItem('method') === 'stripe') {
             const dataToSend = {
@@ -35,6 +51,7 @@ const Success = () => {
                 sessionStorage.setItem('type', sessionStorage.getItem('plan'));
                 setIsLoading(false);
                 sendEmail(res.data);
+                countplan();
             });
         } else if (sessionStorage.getItem('method') === 'paystack') {
             const dataToSend = {

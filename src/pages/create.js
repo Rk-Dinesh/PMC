@@ -18,15 +18,82 @@ const Create = () => {
     const [paidMember, setPaidMember] = useState(false);
     const [lableText, setLableText] = useState('For free member sub topics is limited to 5');
     const navigate = useNavigate();
+    const [endDate, setEndDate] = useState('')
+    const [courses, setCourses] = useState([]);
+    const [monthlyNavigationCount, setMonthlyNavigationCount] = useState(0);
+
+    let type = sessionStorage.getItem('type');
 
     useEffect(() => {
-
-        if (sessionStorage.getItem('type') !== 'free') {
-            setPaidMember(true);
-            setLableText('Select number of sub topics')
+        const userType = sessionStorage.getItem('type');
+        if (userType !== 'free') {
+          setPaidMember(true);
+          setLableText('Select number of sub topics');
+          getDetails();
+          getMonthlyNavigationCount()
+          
+        } else {
+          getCourse();
         }
+      }, []);
 
-    }, []);
+    async function getDetails() {
+        const dataToSend = {
+            uid: sessionStorage.getItem('uid')
+        };
+        try {
+            const postURL = serverURL + '/api/subscriptiondetail';
+            await axios.post(postURL, dataToSend).then(res => {
+                console.log(res.data.session.current_period_end);
+                setEndDate(res.data.session.current_period_end)
+            });
+        } catch (error) {
+            //DO NOTHING
+        }
+    }
+
+    async function getCourse() {
+        
+        const userId = sessionStorage.getItem('uid');
+        console.log(userId);
+
+        const postURL = serverURL + `/api/courses?userId=${userId}`;
+        try {
+            const response = await axios.get(postURL);
+            console.log(response.data);
+            setCourses(response.data);
+            
+            
+        } catch (error) {
+            //DO NOTHING
+        }
+    };
+
+    async function getMonthlyNavigationCount() {
+        try {
+          const response = await axios.post(`${serverURL}/api/getcountplan`, {
+            userid: sessionStorage.getItem('uid')
+          });
+          setMonthlyNavigationCount(response.data.count);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      async function updateMonthlyNavigationCount(userid, count) {
+        try {
+          await axios.post(`${serverURL}/api/updatecount`, {
+            userid,
+            count
+          });
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    
+
+
+    
 
     let handleChange = (i, e) => {
         let newFormValues = [...formValues];
@@ -61,6 +128,7 @@ const Create = () => {
             });
         }
     }
+
 
     const showToast = async (msg) => {
         toast(msg, {
@@ -148,21 +216,55 @@ const Create = () => {
             prompt: prompt,
         };
         try {
-            const postURL = serverURL + '/api/prompt';
+            const postURL = `${serverURL}/api/prompt`;
             const res = await axios.post(postURL, dataToSend);
             const generatedText = res.data.generatedText;
             const cleanedJsonString = generatedText.replace(/```json/g, '').replace(/```/g, '');
             try {
-                const parsedJson = JSON.parse(cleanedJsonString);
-                setProcessing(false);
-                navigate('/topics', { state: { jsonData: parsedJson, mainTopic: mainTopic.toLowerCase(), type: selectedType.toLowerCase() } });
+              const parsedJson = JSON.parse(cleanedJsonString);
+              setProcessing(false);
+          
+              // Check the type of subscription and the end date before navigating
+              if (type === 'free' && courses.length === 1) {
+                showToast('Please subscribe to access more courses.');
+              } else if (type === 'monthly' && new Date(endDate * 1000) > new Date()) {
+                if (monthlyNavigationCount > 0) {
+                  setMonthlyNavigationCount(monthlyNavigationCount - 1);
+                  updateMonthlyNavigationCount(sessionStorage.getItem('uid'), monthlyNavigationCount - 1);
+                  navigate('/topics', {
+                    state: {
+                      jsonData: parsedJson,
+                      mainTopic: mainTopic.toLowerCase(),
+                      type: selectedType.toLowerCase()
+                    }
+                  });
+                } else {
+                  showToast('Your monthly plan has reached the limit of navigations. Please upgrade to yearly plan for unlimited access.');
+                }
+              } else if (type === 'yearly' && new Date(endDate * 1000) > new Date()) {
+                navigate('/topics', {
+                  state: {
+                    jsonData: parsedJson,
+                    mainTopic: mainTopic.toLowerCase(),
+                    type: selectedType.toLowerCase()
+                  }
+                });
+              } else {
+                // Navigate if the conditions are not met
+                navigate('/topics', {
+                  state: {
+                    jsonData: parsedJson,
+                    mainTopic: mainTopic.toLowerCase(),
+                    type: selectedType.toLowerCase()
+                  }
+                });
+              }
             } catch (error) {
-                sendPrompt(prompt, mainTopic, selectedType)
+              sendPrompt(prompt, mainTopic, selectedType)
             }
-
-        } catch (error) {
+          } catch (error) {
             sendPrompt(prompt, mainTopic, selectedType)
-        }
+          }
     }
 
     const handleRadioChange = (event) => {
@@ -246,4 +348,3 @@ const Create = () => {
 };
 
 export default Create;
-
