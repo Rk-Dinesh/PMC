@@ -22,11 +22,27 @@ const Success = () => {
         getDetails();
     }, []);
 
-    async function countplan() {
+    async function countmonthly() {
         const user = sessionStorage.getItem('uid');
         const dataToSend = {
           user: user,
           count: 5
+        };
+      
+        const postURL = serverURL + '/api/countplan';
+        try {
+          const response = await axios.post(postURL, dataToSend);
+          console.log(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      async function countyearly() {
+        const user = sessionStorage.getItem('uid');
+        const dataToSend = {
+          user: user,
+          count: 120
         };
       
         const postURL = serverURL + '/api/countplan';
@@ -45,13 +61,18 @@ const Success = () => {
                 uid: sessionStorage.getItem('uid'),
                 plan: sessionStorage.getItem('plan')
             };
+            const plan = sessionStorage.getItem('plan')
             const postURL = serverURL + '/api/stripedetails';
             await axios.post(postURL, dataToSend).then(res => {
                 setJsonData(res.data);
                 sessionStorage.setItem('type', sessionStorage.getItem('plan'));
                 setIsLoading(false);
                 sendEmail(res.data);
-                countplan();
+                if(plan === "Monthly Plan"){
+                    countmonthly()
+                }else{
+                    countyearly()
+                }
             });
         } else if (sessionStorage.getItem('method') === 'paystack') {
             const dataToSend = {

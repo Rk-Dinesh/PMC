@@ -23,7 +23,7 @@ export const MonthTime = 'month';
 
 //YEARLY 
 export const YearType = 'Yearly Plan';
-export const YearCost = 9;
+export const YearCost = 20;
 export const YearTime = 'year';
 
 //TESTIMONIAL

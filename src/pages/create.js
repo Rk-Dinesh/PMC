@@ -33,8 +33,8 @@ const Create = () => {
                 setPaidMember(true);
                 setLableText('Select number of sub topics');
                 await getDetails();
+                await getCourse();
                 await getMonthlyNavigationCount();
-                await getMonthlyNavigationCount() 
             } else {
                 await getCourse();
             }
@@ -250,7 +250,7 @@ const Create = () => {
               // Check the type of subscription and the end date before navigating
               if (type === 'free' && courses.length >= 1) {
                 showToast('Please subscribe to access more courses.');
-            } else if (type === 'Monthly Plan' && new Date(endDate * 1000) > new Date()) {
+            } else if (type === 'Monthly Plan' && new Date(endDate * 1000) > new Date() ) {
                 if (monthlyNavigationCount > 0) {
                   setMonthlyNavigationCount(monthlyNavigationCount - 1);
                   console.log(monthlyNavigationCount);
@@ -265,14 +265,26 @@ const Create = () => {
                 } else {
                   showToast('Your monthly plan has reached the limit of navigations. Please upgrade to yearly plan for unlimited access.');
                 }
-              } else if (type === 'Yearly Plan' && new Date(endDate * 1000) > new Date()) {
-                navigate('/topics', {
-                  state: {
-                    jsonData: parsedJson,
-                    mainTopic: mainTopic.toLowerCase(),
-                    type: selectedType.toLowerCase()
+              }else if (type === 'Yearly Plan' && new Date(endDate * 1000) > new Date()) {
+                // Check if the number of courses created in the current month is less than the limit
+                const currentMonth = new Date().getMonth();
+                const coursesThisMonth = courses.filter(course => new Date(course.date).getMonth() === currentMonth);
+
+                if (coursesThisMonth.length < 10 && monthlyNavigationCount > 0) {
+                    setMonthlyNavigationCount(monthlyNavigationCount - 1);
+                    console.log(monthlyNavigationCount);
+                   await updateCount();
+                    navigate('/topics', {
+                      state: {
+                        jsonData: parsedJson,
+                        mainTopic: mainTopic.toLowerCase(),
+                        type: selectedType.toLowerCase()
+                      }
+                    });
+                  } else {
+                    setProcessing(false);
+                    showToast('You have reached the limit of 10 courses for this month.');
                   }
-                });
               } else {
                 // Navigate if the conditions are not met
                 navigate('/topics', {

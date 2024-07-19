@@ -77,9 +77,9 @@ const UserCourses = ({ userId }) => {
                 <>
                     {courses.length === 0 ? <div className="text-center h-center flex flex-col items-center justify-center">
                         <img alt='img' src={found} className='max-w-sm h-3/6' />
-                        <p className='text-black font-black dark:text-white text-xl'>Nothing Found</p>
+                        <p className='text-black font-black dark:text-white text-xl'>No courses generated yet !</p>
                         <button onClick={redirectGenerate} className='bg-black text-white px-5 py-2 mt-4 font-medium dark:bg-white dark:text-black'>
-                            Generate Course
+                            Generate Your First free Course
                         </button>
                     </div> :
                         <div className='my-4 flex flex-wrap'>
