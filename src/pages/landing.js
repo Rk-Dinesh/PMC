@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Header from '../components/header';
-import Footers from '../components/footers';
+
 import SlideOne from '../components/landing/slideOne';
 import SlideTwo from '../components/landing/slideTwo';
 import SlideThree from '../components/landing/slideThree';
@@ -9,6 +9,7 @@ import SlideFive from '../components/landing/slideFive';
 import SlideSix from '../components/landing/slideSix';
 import { serverURL } from '../constants';
 import axios from 'axios';
+import SlideSeven from '../components/landing/SlideSeven';
 
 const Landing = () => {
 
@@ -30,10 +31,11 @@ const Landing = () => {
             <SlideOne />
             <SlideTwo />
             <SlideThree />
-            <SlideFour />
+            {/* <SlideFour /> */}
             <SlideFive />
             <SlideSix />
-            <Footers />
+            <SlideSeven />
+         
         </>
     );
 };

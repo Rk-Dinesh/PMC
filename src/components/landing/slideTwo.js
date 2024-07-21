@@ -1,50 +1,68 @@
 import React from 'react';
-import slide from '../../res/img/slideTwo.svg'
-import { PiStudentFill, PiFeatherFill } from "react-icons/pi";
+import { RiUserSearchLine } from "react-icons/ri";
+import { TbHomePlus } from "react-icons/tb";
+import { MdOutlineAccountBalanceWallet } from "react-icons/md";
 
 const SlideTwo = () => {
     return (
-        <div className="px-7 justify-center items-center pb-10 dark:bg-black">
-            <div className="flex flex-col md:flex-row items-center">
+       
+        <section className=" bg-slate-900 px-20 py-4">
+        <div className="container relative md:mt-24 mt-16 ">
+          <div className="grid grid-cols-1 pb-6 text-center">
+            <h3 className="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold text-white">
+              Create Your Course in 3 Easy Steps
+            </h3>
 
-                <div className="md:w-1/2 h-full p-4 flex flex-col items-center md:items-start justify-center">
+            <p className="text-slate-400 max-w-xl mx-auto">
+              Quickly input your course topic. Choose images or videos. Our AI
+              creates engaging content. Simple!
+            </p>
+          </div>
 
-                    <h2 className="text-4xl font-black mb-2 max-md:text-2xl dark:text-white" >Unlock Infinite Knowledge</h2>
+          <div className="grid md:grid-cols-3 grid-cols-1 mt-6 gap-6 ite">
+            <div className="relative p-6">
+              <RiUserSearchLine className=" text-amber-400  text-[45px]" />
 
+              <h5 className="text-xl font-semibold text-white my-5">
+                Define Your Course
+              </h5>
 
-                    <p className="text-black mb-2 mt-2 max-md:text-center max-md:text-xs dark:text-white">
-                        Craft compelling courses effortlessly with our platform, enabling you to create engaging content on any topic.
-                        Seamlessly integrate video and theory lectures for a comprehensive learning experience, fostering effective education in just a few clicks
-                    </p>
-
-
-                    <div className='flex flex-row justify-center mt-4'>
-                        <div className="md:w-1/2 mb-2 md:mb-0  mx-2 max-md:text-center">
-                            <div className='max-md:flex max-md:justify-center max-md:items-center'>
-                                <PiStudentFill className='text-2xl max-md:text-xl dark:text-white' />
-                            </div>
-                            <h3 className="text-xl font-bold mb-2 max-md:text-xl dark:text-white" >Study Online</h3>
-                            <p className='text-black max-md:text-xs dark:text-white'>Video & Theory Lecture</p>
-                        </div>
-
-                        <div className="md:w-1/2 mb-2 md:mb-0 mx-2 max-md:text-center">
-                            <div className='max-md:flex max-md:justify-center max-md:items-center'>
-                                <PiFeatherFill className='text-2xl max-md:text-xl dark:text-white' />
-                            </div>
-                            <h3 className="text-xl font-bold mb-2 max-md:text-xl dark:text-white">Create Course</h3>
-                            <p className='text-black max-md:text-xs dark:text-white'>Create Course on Any Topic</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="md:w-1/2 h-full">
-                    <img
-                        src={slide}
-                        alt="Your Alt Text"
-                        className="w-full h-full object-cover"
-                    />
-                </div>
+              <p className="text-slate-400">
+                Start by outlining the core of your course. Clearly define your
+                course topic and let our AI suggest relevant subtopics or add
+                your own. You have complete control over the depth and breadth
+                of your course.
+              </p>
             </div>
+
+            <div className="relative p-6">
+              <MdOutlineAccountBalanceWallet className=" text-amber-400  text-[45px]" />
+
+              <h5 className="text-xl font-semibold text-white my-5">
+                Customize Your Course Structure
+              </h5>
+
+              <p className="text-slate-400">
+                Tailor your course to your learners needs. Choose the ideal
+                number of subtopics and decide whether you prefer a text-based
+                course enhanced with images or a dynamic learning experience
+                with videos.
+              </p>
+            </div>
+
+            <div className="relative p-6">
+              <TbHomePlus className=" text-amber-400  text-[45px]" />
+              <h5 className="text-xl font-semibold text-white my-5">
+                Generate Your Course
+              </h5>
+
+              <p className="text-slate-400">
+              With a few clicks, Pick My Course transforms your vision into a fully-fledged online course. Our AI meticulously crafts engaging content, ensuring your course is informative and visually appealing. Sit back, relax, and watch your course come to life.
+              </p>
+            </div>
+          </div>
         </div>
+      </section>
     );
 };
 

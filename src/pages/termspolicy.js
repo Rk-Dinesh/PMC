@@ -25,9 +25,9 @@ const TermsPolicy = () => {
     return (
         <div className='h-screen flex flex-col'>
             <Header isHome={false} className="sticky top-0 z-50" />
-            <div className='dark:bg-black flex-1'>
+            <div className='bg-black flex-1 pt-16'>
                 <div className='flex-1 flex items-center justify-center py-10 flex-col'>
-                    <p className='text-center font-black text-4xl text-black dark:text-white'>Terms</p>
+                    <p className='text-center font-black text-4xl text-white'>Terms and Conditions</p>
                     <div className='w-4/5 py-20'><StyledText text={data} /></div>
                 </div>
             </div>

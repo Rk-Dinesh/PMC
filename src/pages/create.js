@@ -54,7 +54,7 @@ const Create = () => {
                 setEndDate(res.data.session.current_period_end)
             });
         } catch (error) {
-            //DO NOTHING
+            
         }
     }
 
@@ -71,7 +71,7 @@ const Create = () => {
             
             
         } catch (error) {
-            //DO NOTHING
+           
         }
     };
 
@@ -90,7 +90,7 @@ const Create = () => {
             
             
         } catch (error) {
-            //DO NOTHING
+           
         }
     };
 
@@ -265,15 +265,14 @@ const Create = () => {
                 } else {
                   showToast('Your monthly plan has reached the limit of navigations. Please upgrade to yearly plan for unlimited access.');
                 }
-              }else if (type === 'Yearly Plan' && new Date(endDate * 1000) > new Date()) {
-                // Check if the number of courses created in the current month is less than the limit
-                const currentMonth = new Date().getMonth();
-                const coursesThisMonth = courses.filter(course => new Date(course.date).getMonth() === currentMonth);
+              }else if (type === 'Yearly Plan' ) {
+                // const currentMonth = new Date().getMonth();
+                // const coursesThisMonth = courses.filter(course => new Date(course.date).getMonth() === currentMonth);
 
-                if (coursesThisMonth.length < 10 && monthlyNavigationCount > 0) {
-                    setMonthlyNavigationCount(monthlyNavigationCount - 1);
-                    console.log(monthlyNavigationCount);
-                   await updateCount();
+                // if (coursesThisMonth.length < 10 && monthlyNavigationCount > 0) {
+                //     setMonthlyNavigationCount(monthlyNavigationCount - 1);
+                //     console.log(monthlyNavigationCount);
+                //    await updateCount();
                     navigate('/topics', {
                       state: {
                         jsonData: parsedJson,
@@ -281,12 +280,11 @@ const Create = () => {
                         type: selectedType.toLowerCase()
                       }
                     });
-                  } else {
-                    setProcessing(false);
-                    showToast('You have reached the limit of 10 courses for this month.');
-                  }
+                //   } else {
+                //     setProcessing(false);
+                //     showToast('You have reached the limit of 10 courses for this month.');
+                //   }
               } else {
-                // Navigate if the conditions are not met
                 navigate('/topics', {
                   state: {
                     jsonData: parsedJson,

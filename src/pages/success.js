@@ -68,11 +68,12 @@ const Success = () => {
                 sessionStorage.setItem('type', sessionStorage.getItem('plan'));
                 setIsLoading(false);
                 sendEmail(res.data);
-                if(plan === "Monthly Plan"){
-                    countmonthly()
-                }else{
-                    countyearly()
-                }
+                // if(plan === "Monthly Plan"){
+                //     countmonthly()
+                // }else{
+                //     countyearly()
+                // }
+                countmonthly();
             });
         } else if (sessionStorage.getItem('method') === 'paystack') {
             const dataToSend = {

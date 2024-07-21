@@ -7,6 +7,7 @@ import LogoComponent from './LogoComponent';
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import Logo from '../assets/PMC_logo.png'
 
 const Header = ({ isHome }) => {
 
@@ -70,6 +71,28 @@ const Header = ({ isHome }) => {
     navigate('/pricing', { state: { header: false } });
   }
 
+  function redirectTerms() {
+    navigate("/terms");
+  }
+
+  function redirectPrivacy() {
+    navigate("/privacy");
+  }
+  
+  function redirectPricinglan() {
+    // Navigate to the home page first if not already there
+    navigate("/");
+    // Smooth scroll to the pricing section
+    setTimeout(() => {
+        const pricingSection = document.getElementById("pricing-section");
+        if (pricingSection) {
+            pricingSection.scrollIntoView({ behavior: "smooth" });
+        }
+    }, 100); // Delay to ensure the home page is fully loaded
+}
+
+  
+
   const showToast = async (msg) => {
     toast(msg, {
       position: "bottom-center",
@@ -86,25 +109,52 @@ const Header = ({ isHome }) => {
     <Flowbite>
       {!isHome ?
         <>
-          <Navbar fluid className=' py-3 dark:bg-black'>
-            <Navbar.Brand href={websiteURL} className="ml-1">
-              <LogoComponent isDarkMode={storedTheme} />
-              <span className="self-center whitespace-nowrap text-2xl font-black dark:text-white ">{name}</span>
-            </Navbar.Brand>
-            <div className="flex md:hidden justify-center items-center">
-              <DarkModeToggle className='inline-flex items-cente md:hidden' />
-              <Navbar.Toggle className='inline-flex items-center rounded-lg p-2 text-sm text-black hover:bg-white focus:outline-none focus:ring-0 focus:ring-gray-200 dark:text-white dark:hover:bg-black dark:focus:ring-gray-600 md:hidden' />
-            </div>
-            <Navbar.Collapse>
-              <div className="hidden md:flex justify-center items-center">
-                <DarkModeToggle />
-              </div>
-              <Navbar.Link className='border-b-0 text-black  font-normal mb-2 mt-2 dark:text-white  hover:bg-white dark:hover:bg-black hover:text-black md:hover:text-black dark:hover:text-white dark:md:hover:text-white' style={{ paddingLeft: '0px', paddingRight: '0px', paddingBottom: '10px', paddingTop: '10px' }} onClick={redirectPricingTwo}>Pricing</Navbar.Link>
-              <Navbar.Link className='border-b-0 text-black  font-normal mb-2 mt-2 dark:text-white hover:bg-white dark:hover:bg-black hover:text-black md:hover:text-black dark:hover:text-white dark:md:hover:text-white' style={{ paddingLeft: '0px', paddingRight: '0px', paddingBottom: '10px', paddingTop: '10px' }} onClick={redirectFeatures}>Features</Navbar.Link>
-              <Navbar.Link onClick={redirectSignIn} className='border-b-0 text-black  font-normal mb-2 mt-2 border-black dark:text-white dark:border-white hover:bg-white dark:hover:bg-black hover:text-black md:hover:text-black dark:hover:text-white dark:md:hover:text-white' style={{ borderWidth: '1px', paddingLeft: '15px', paddingRight: '15px', paddingBottom: '10px', paddingTop: '10px' }}>SignIn</Navbar.Link>
-              <Navbar.Link onClick={redirectSignUp} className='border-b-0 text-white  font-normal mb-2 mt-2 bg-black dark:text-black dark:bg-white  hover:bg-black dark:hover:bg-white md:dark:hover:bg-white md:hover:bg-black hover:text-white md:hover:text-white dark:hover:text-black dark:md:hover:text-black' style={{ paddingLeft: '15px', paddingRight: '15px', paddingBottom: '10px', paddingTop: '10px' }}>SignUp</Navbar.Link>
-            </Navbar.Collapse>
-          </Navbar>
+         <nav className="bg-slate-800 p-4 fixed top-0 w-full z-10">
+      <div className="container mx-auto flex justify-between items-center">
+        {/* Logo and Heading on the left */}
+        <div className="flex items-center space-x-4">
+          <img src={Logo} alt="Logo" className="h-14 w-14" />
+          <span className="text-white text-lg font-semibold hover:text-amber-500">PickMyCourse</span>
+        </div>
+        {/* Centered Navigation Links */}
+        <div className="hidden md:flex space-x-8">
+        <span onClick={redirectPricinglan} className="text-gray-300 hover:text-amber-500">
+          Pricing
+          </span>
+         
+          <span onClick={redirectPrivacy} className="text-gray-300 hover:text-amber-500">
+          Privacy Policy
+          </span>
+          <span onClick={redirectTerms} className="text-gray-300 hover:text-amber-500">
+          Terms Of Service
+          </span>
+         
+        </div>
+        {/* Sign In and Sign Up on the right */}
+        <ul className="buy-button list-none mb-0">
+          <li className="inline mb-0">
+           <span onClick={redirectSignIn}>
+           <span className="py-[6px] px-4 md:inline hidden items-center justify-center tracking-wider align-middle duration-500 text-sm text-center rounded bg-amber-400/5 hover:bg-amber-400 border border-amber-400/10 hover:border-amber-400 text-amber-400 hover:text-white font-semibold">
+                Login
+              </span>
+              <span className="py-[6px] px-4 inline md:hidden items-center justify-center tracking-wider align-middle duration-500 text-sm text-center rounded bg-amber-400 hover:bg-amber-500 border border-amber-400 hover:border-amber-500 text-white font-semibold">
+                Login
+              </span>
+           </span>
+          
+          </li>
+
+          <li className="md:inline hidden ps-1 mb-0">
+            <span
+            onClick={redirectSignUp}
+              className="py-[6px] px-4 inline-block items-center justify-center tracking-wider align-middle duration-500 text-sm text-center rounded bg-amber-400 hover:bg-amber-500 border border-amber-400 hover:border-amber-500 text-white font-semibold"
+            >
+              Signup
+            </span>
+          </li>
+        </ul>
+      </div>
+    </nav>
         </>
         :
         <>

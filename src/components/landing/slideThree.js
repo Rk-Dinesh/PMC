@@ -1,36 +1,70 @@
 import React from "react";
-import { PiKeyboard, PiVideo    } from "react-icons/pi";
-import { RiAiGenerate } from "react-icons/ri";
+import PMC from "../../assets/PMC.jpeg";
+import { useNavigate } from "react-router-dom";
+import { FiCheckCircle } from "react-icons/fi";
+import { IoIosArrowForward } from "react-icons/io";
 
 const SlideThree = () => {
+    const navigate = useNavigate();
+
+    function redirectSignUp() {
+        navigate("/signup");
+    }
     return (
-        <div className="dark:bg-black">
-            <div className="flex items-center justify-center text-center">
-                <div className="text-4xl font-black dark:text-white max-md:text-2xl">How it works</div>
+        <section className=" bg-slate-900 px-20 py-10">
+        <div className="container relative md:mt-24 mt-16 ">
+          <div className="grid md:grid-cols-2 grid-cols-1 items-center gap-10">
+            <div className="relative ">
+              <img src={PMC} alt="" className="rounded" />
             </div>
-            <div className="lg:flex py-24 max-md:py-14">
-              
-                <div className="flex flex-col items-center justify-center lg:w-1/3 pt-6">
-                    <PiKeyboard className="text-4xl max-md:text-3xl dark:text-white" />
-                    <div className="text-2xl max-md:text-lg pt-4 font-bold  dark:text-white">Enter Course Title</div>
-                    <div className="text-lg max-md:text-xs text-center px-3 pt-2 font-medium  dark:text-white"  >Enter the course title for which you want to generate content using AI</div>
-                </div>
 
-         
-                <div className="flex flex-col items-center justify-center lg:w-1/3 pt-6">
-                    <RiAiGenerate  className="text-4xl max-md:text-3xl dark:text-white" />
-                    <div className="text-2xl max-md:text-lg pt-4 font-bold  dark:text-white">AI Generates Sub-Topic</div>
-                    <div className="text-lg max-md:text-xs text-center px-3 pt-2 font-medium  dark:text-white" >AI will generate topics and subtopics based on the title you provide</div>
-                </div>
+            <div className="">
+              <h3 className="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold text-white">
+                Elevate Your Learning Experience
+              </h3>
+              <p className="text-slate-400 max-w-xl">
+                Discover the future of learning with Pick My Course. Our
+                AI-powered platform creates engaging courses tailored to your
+                needs. Spend less time searching for information and more time
+                mastering new skills. Unlock your full potential today!
+              </p>
 
-               
-                <div className="flex flex-col items-center justify-center lg:w-1/3 pt-6">
-                    <PiVideo   className="text-4xl max-md:text-3xl  dark:text-white" />
-                    <div className="text-2xl max-md:text-lg pt-4 font-bold  dark:text-white">Video & Theory Course</div>
-                    <div className="text-lg max-md:text-xs text-center px-3 pt-2 font-medium  dark:text-white" >AI will generate video and theory course allowing you to start learning</div>
-                </div>
+              <ul className="list-none text-slate-400 mt-4">
+                <li className="mb-2 flex items-center">
+                  <FiCheckCircle className="text-amber-400 h-5 w-5 me-2" />{" "}
+                  AI-Powered Course Generation
+                </li>
+                <li className="mb-2 flex items-center">
+                  <FiCheckCircle className="text-amber-400 h-5 w-5 me-2" /> Our
+                  Customizable Course Format
+                </li>
+                <li className="mb-2 flex items-center">
+                  <FiCheckCircle className="text-amber-400 h-5 w-5 me-2" />{" "}
+                  User-Friendly Interface
+                </li>
+                <li className="mb-2 flex items-center">
+                  <FiCheckCircle className="text-amber-400 h-5 w-5 me-2" />{" "}
+                  Time-Saving Solution
+                </li>
+                <li className="mb-2 flex items-center">
+                  <FiCheckCircle className="text-amber-400 h-5 w-5 me-2" />{" "}
+                  Engaging Course Content
+                </li>
+              </ul>
+
+              <div className="mt-4 flex items-center gap-3">
+                <span
+                  onClick={redirectSignUp}
+                  className="hover:text-amber-400 font-medium duration-500 text-white"
+                >
+                  Start Now{" "}
+                </span>
+                <IoIosArrowForward className=" text-[20px] align-middle text-white" />
+              </div>
             </div>
+          </div>
         </div>
+      </section>
     );
 };
 

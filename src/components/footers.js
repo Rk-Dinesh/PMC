@@ -13,7 +13,7 @@ const Footers = () => {
     navigate("/about");
   }
   function redirectContact() {
-    navigate("/contact");
+    navigate("/");
   }
   function redirectTerms() {
     navigate("/terms");
@@ -32,6 +32,9 @@ const Footers = () => {
             src={storedTheme === "true" ? DarkLogo : Logo}
           />
           <Footer.LinkGroup>
+          <p className="text-black  font-bold  mx-4 dark:text-white" onClick={redirectContact}>
+              Home
+            </p>
             <p className="text-black font-bold mx-4 dark:text-white" onClick={redirectAbout}>
               About
             </p>
@@ -41,9 +44,7 @@ const Footers = () => {
             <p className="text-black  font-bold  mx-4 dark:text-white " onClick={redirectTerms}>
               Terms
             </p>
-            <p className="text-black  font-bold  mx-4 dark:text-white" onClick={redirectContact}>
-              Contact
-            </p>
+           
           </Footer.LinkGroup>
         </div>
         <Footer.Divider className="border-black dark:border-white" />

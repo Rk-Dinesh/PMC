@@ -9,6 +9,8 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { AiOutlineLoading } from 'react-icons/ai';
+import Logo from "../assets/PMC_logo.png"
+import AI from "../assets/AI.png"
 
 const SignUp = () => {
 
@@ -135,59 +137,111 @@ const SignUp = () => {
     }
 
     return (
-        <Flowbite>
-            <div className="flex h-screen dark:bg-black no-scrollbar">
+        // <Flowbite>
+        //     <div className="flex h-screen dark:bg-black no-scrollbar">
 
-                <div className="flex-1 overflow-y-auto no-scrollbar">
+        //         <div className="flex-1 overflow-y-auto no-scrollbar">
 
-                    <Navbar fluid className='p-8 dark:bg-black'>
-                        <Navbar.Brand href={websiteURL} className="ml-1">
-                            <LogoComponent isDarkMode={storedTheme} />
-                            <span className="self-center whitespace-nowrap text-2xl font-black dark:text-white ">{name}</span>
-                        </Navbar.Brand>
-                        <DarkModeToggle />
-                    </Navbar>
+        //             <Navbar fluid className='p-8 dark:bg-black'>
+        //                 <Navbar.Brand href={websiteURL} className="ml-1">
+        //                     <LogoComponent isDarkMode={storedTheme} />
+        //                     <span className="self-center whitespace-nowrap text-2xl font-black dark:text-white ">{name}</span>
+        //                 </Navbar.Brand>
+        //                 <DarkModeToggle />
+        //             </Navbar>
 
-                    <form onSubmit={handleSignup} className="max-w-sm m-auto py-4 no-scrollbar">
+        //             <form onSubmit={handleSignup} className="max-w-sm m-auto py-4 no-scrollbar">
 
-                        <h1 className='text-center font-black text-5xl text-black dark:text-white'>SignUp</h1>
-                        <p className='text-center font-normal text-black py-4 dark:text-white'>Enter email & password to continue</p>
+        //                 <h1 className='text-center font-black text-5xl text-black dark:text-white'>SignUp</h1>
+        //                 <p className='text-center font-normal text-black py-4 dark:text-white'>Enter email & password to continue</p>
 
-                        <div className='py-6'>
-                            <div className='mb-6'>
-                                <div className="mb-2 block">
-                                    <Label className="font-bold text-black dark:text-white" htmlFor="name1" value="Name" />
+        //                 <div className='py-6'>
+        //                     <div className='mb-6'>
+        //                         <div className="mb-2 block">
+        //                             <Label className="font-bold text-black dark:text-white" htmlFor="name1" value="Name" />
+        //                         </div>
+        //                         <input value={mName} onChange={(e) => setName(e.target.value)} className='focus:ring-black focus:border-black border border-black font-normal bg-white rounded-none block w-full dark:bg-black dark:border-white dark:text-white' id="name1" type="text" />
+        //                     </div>
+        //                     <div className='mb-6'>
+        //                         <div className="mb-2 block">
+        //                             <Label className="font-bold text-black dark:text-white" htmlFor="email1" value="Email" />
+        //                         </div>
+        //                         <input value={email} onChange={(e) => setEmail(e.target.value)} className='focus:ring-black focus:border-black border border-black font-normal bg-white rounded-none block w-full dark:bg-black dark:border-white dark:text-white' id="email1" type="email" />
+        //                     </div>
+        //                     <div className='mb-14'>
+        //                         <div className="mb-2 block">
+        //                             <Label className="font-bold text-black dark:text-white" htmlFor="password1" value="Password" />
+        //                         </div>
+        //                         <input value={password} onChange={(e) => setPassword(e.target.value)} className='focus:ring-black focus:border-black border border-black font-normal bg-white rounded-none block w-full dark:bg-black dark:border-white dark:text-white' id="password1" type="password" />
+        //                     </div>
+        //                     <Button isProcessing={processing} processingSpinner={<AiOutlineLoading className="h-6 w-6 animate-spin" />} className='items-center justify-center text-center dark:bg-white dark:text-black bg-black text-white font-bold rounded-none w-full enabled:hover:bg-black enabled:focus:bg-black enabled:focus:ring-transparent dark:enabled:hover:bg-white dark:enabled:focus:bg-white dark:enabled:focus:ring-transparent' type="submit">Submit</Button>
+        //                     <p onClick={redirectSignIn} className='text-center font-normal text-black underline pt-4  dark:text-white'>Already have an account ? SignIn</p>
+        //                 </div>
+
+        //             </form>
+        //         </div>
+
+        //         <div className="flex-1 hidden lg:flex items-center justify-center bg-gray-50 dark:bg-white">
+        //             <img
+        //                 alt='logo'
+        //                 src={img}
+        //                 className="h-full bg-cover bg-center p-9"
+        //             />
+        //         </div>
+        //     </div>
+        // </Flowbite>
+        <section className="relative overflow-hidden h-screen flex items-center  bg-no-repeat bg-left bg-cover bg-fixed " style={{
+            backgroundImage: `url(${AI})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}>
+        <div className="absolute inset-0 bg-slate-950/20"></div>
+        <div className="container relative">
+            <div className="md:flex justify-end">
+                <div className="lg:w-1/3 md:w-2/4">
+                    <div className="rounded shadow bg-slate-900 p-6">
+                        <img src={Logo} alt="" className='w-16 h-16' />
+    
+                        <h5 className="mt-6 text-xl font-semibold text-white">Create an account</h5>
+    
+                        <form onSubmit={handleSignup} className="text-start mt-4">
+                            <div className="grid grid-cols-1">
+                                <div className="mb-4">
+                                    <label className="font-semibold  text-white" htmlFor="RegisterName">Your Name:</label>
+                                    <input value={mName} onChange={(e) => setName(e.target.value)} id="RegisterName" type="text" className="form-input mt-3 w-full py-2 px-3 h-10 bg-transparent bg-slate-900 text-slate-200 rounded outline-none border border-gray-200 focus:border-amber-400 dark:border-gray-800 dark:focus:border-amber-400 focus:ring-0" />
                                 </div>
-                                <input value={mName} onChange={(e) => setName(e.target.value)} className='focus:ring-black focus:border-black border border-black font-normal bg-white rounded-none block w-full dark:bg-black dark:border-white dark:text-white' id="name1" type="text" />
-                            </div>
-                            <div className='mb-6'>
-                                <div className="mb-2 block">
-                                    <Label className="font-bold text-black dark:text-white" htmlFor="email1" value="Email" />
+    
+                                <div className="mb-4">
+                                    <label className="font-semibold  text-white" htmlFor="LoginEmail">Email Address:</label>
+                                    <input value={email} onChange={(e) => setEmail(e.target.value)} id="LoginEmail" type="email" className="form-input mt-3 w-full py-2 px-3 h-10 bg-transparent bg-slate-900 text-slate-200 rounded outline-none border border-gray-200 focus:border-amber-400 dark:border-gray-800 dark:focus:border-amber-400 focus:ring-0" />
                                 </div>
-                                <input value={email} onChange={(e) => setEmail(e.target.value)} className='focus:ring-black focus:border-black border border-black font-normal bg-white rounded-none block w-full dark:bg-black dark:border-white dark:text-white' id="email1" type="email" />
-                            </div>
-                            <div className='mb-14'>
-                                <div className="mb-2 block">
-                                    <Label className="font-bold text-black dark:text-white" htmlFor="password1" value="Password" />
+    
+                                <div className="mb-4">
+                                    <label className="font-semibold  text-white" htmlFor="LoginPassword">Password:</label>
+                                    <input value={password} onChange={(e) => setPassword(e.target.value)} id="LoginPassword" type="password" className="form-input mt-3 w-full py-2 px-3 h-10 bg-transparent bg-slate-900 text-slate-200 rounded outline-none border border-gray-200 focus:border-amber-400 dark:border-gray-800 dark:focus:border-amber-400 focus:ring-0" />
                                 </div>
-                                <input value={password} onChange={(e) => setPassword(e.target.value)} className='focus:ring-black focus:border-black border border-black font-normal bg-white rounded-none block w-full dark:bg-black dark:border-white dark:text-white' id="password1" type="password" />
+    
+                                <div className="mb-4">
+                                    <div className="flex items-center w-full mb-0">
+                                        <input className="form-checkbox rounded border-gray-200 dark:border-gray-800 text-amber-400 focus:border-amber-300 focus:ring focus:ring-offset-0 focus:ring-amber-200 focus:ring-opacity-50 cursor-pointer me-2" type="checkbox" value="" id="AcceptT&C"/>
+                                        <label className="form-check-label text-slate-400 cursor-pointer" htmlFor="AcceptT&C">I Accept <a href="" className="text-amber-400">Terms of Service & Privacy Policy</a></label>
+                                    </div>
+                                </div>
+    
+                                <div className="mb-4">
+                                    <input type="submit" className="py-2 px-5 inline-block tracking-wide border align-middle duration-500 text-base text-center bg-amber-400 hover:bg-amber-500 border-amber-400 hover:border-amberbg-amber-500 text-white rounded-md w-full" value="Register"/>
+                                </div>
+    
+                                <div className="text-center">
+                                    <span className="text-slate-400 me-2">Already have an account ? </span> <p onClick={redirectSignIn} className="text-white font-bold inline-block">Sign in</p>
+                                </div>
                             </div>
-                            <Button isProcessing={processing} processingSpinner={<AiOutlineLoading className="h-6 w-6 animate-spin" />} className='items-center justify-center text-center dark:bg-white dark:text-black bg-black text-white font-bold rounded-none w-full enabled:hover:bg-black enabled:focus:bg-black enabled:focus:ring-transparent dark:enabled:hover:bg-white dark:enabled:focus:bg-white dark:enabled:focus:ring-transparent' type="submit">Submit</Button>
-                            <p onClick={redirectSignIn} className='text-center font-normal text-black underline pt-4  dark:text-white'>Already have an account ? SignIn</p>
-                        </div>
-
-                    </form>
-                </div>
-
-                <div className="flex-1 hidden lg:flex items-center justify-center bg-gray-50 dark:bg-white">
-                    <img
-                        alt='logo'
-                        src={img}
-                        className="h-full bg-cover bg-center p-9"
-                    />
+                        </form>
+                    </div>
                 </div>
             </div>
-        </Flowbite>
+        </div>
+    </section>
     );
 };
 
