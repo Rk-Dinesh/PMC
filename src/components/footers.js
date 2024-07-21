@@ -35,9 +35,9 @@ const Footers = () => {
           <p className="text-black  font-bold  mx-4 dark:text-white" onClick={redirectContact}>
               Home
             </p>
-            <p className="text-black font-bold mx-4 dark:text-white" onClick={redirectAbout}>
+            {/* <p className="text-black font-bold mx-4 dark:text-white" onClick={redirectAbout}>
               About
-            </p>
+            </p> */}
             <p className="text-black  font-bold  mx-4 dark:text-white" onClick={redirectPrivacy}>
               Privacy Policy
             </p>

@@ -28,7 +28,9 @@ const PrivacyPolicy = () => {
             <div className='bg-black flex-1 mt-16'>
                 <div className='flex-1 flex items-center justify-center py-10 flex-col'>
                     <p className='text-center font-black text-4xl  text-white'>Privacy Policy</p>
-                    <div className='w-4/5 py-20'><StyledText text={data} /></div>
+                    <div className='w-4/5 py-20'>
+                    <div className='text-white' dangerouslySetInnerHTML={{ __html: data }} />;
+                    </div>
                 </div>
             </div>
             <Footers className="sticky bottom-0 z-50" />
