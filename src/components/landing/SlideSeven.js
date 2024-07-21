@@ -2,7 +2,7 @@ import React from 'react';
 import Logo from '../../assets/PMC_logo.png';
 import { useNavigate } from 'react-router-dom';
 import { FaLinkedin } from "react-icons/fa6";
-import { FaFacebookSquare } from "react-icons/fa";
+// import { FaFacebookSquare } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa6";
 import { TfiTwitterAlt } from "react-icons/tfi";
@@ -94,7 +94,7 @@ const SlideSeven = () => {
                     <FaLinkedin className="h-6 w-6 align-middle text-blue-500" />
                   </a>
                 </li>
-                <li className="inline">
+                {/* <li className="inline">
                   <a
                     href="https://www.facebook.com/profile.php?id=61562719060394"
                     target="_blank"
@@ -102,7 +102,7 @@ const SlideSeven = () => {
                   >
                     <FaFacebookSquare className="h-6 w-6 align-middle text-blue-500" />
                   </a>
-                </li>
+                </li> */}
                 <li className="inline">
                   <a
                     href="https://www.instagram.com/dpickmycourse"

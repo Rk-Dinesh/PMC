@@ -19,6 +19,7 @@ const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [processing, setProcessing] = useState(false);
+    const [acceptTnC, setAcceptTnC] = useState(false);
 
     const navigate = useNavigate();
     function redirectSignIn() {
@@ -28,6 +29,14 @@ const SignUp = () => {
     function redirectHome() {
         navigate("/home");
     }
+
+    function redirectTerms() {
+        navigate("/terms");
+      }
+    
+      function redirectPrivacy() {
+        navigate("/privacy");
+      }
 
     useEffect(() => {
 
@@ -57,6 +66,9 @@ const SignUp = () => {
             return;
         } else if (password.length < 9) {
             showToast('Password should be at least 9 characters');
+            return;
+        }else if (!acceptTnC) {
+            showToast('You must accept the Terms of Service and Privacy Policy');
             return;
         }
         const postURL = serverURL + '/api/signup';
@@ -223,8 +235,8 @@ const SignUp = () => {
     
                                 <div className="mb-4">
                                     <div className="flex items-center w-full mb-0">
-                                        <input className="form-checkbox rounded border-gray-200 dark:border-gray-800 text-amber-400 focus:border-amber-300 focus:ring focus:ring-offset-0 focus:ring-amber-200 focus:ring-opacity-50 cursor-pointer me-2" type="checkbox" value="" id="AcceptT&C"/>
-                                        <label className="form-check-label text-slate-400 cursor-pointer" htmlFor="AcceptT&C">I Accept <a href="" className="text-amber-400">Terms of Service & Privacy Policy</a></label>
+                                        <input className="form-checkbox rounded border-gray-200 dark:border-gray-800 text-amber-400 focus:border-amber-300 focus:ring focus:ring-offset-0 focus:ring-amber-200 focus:ring-opacity-50 cursor-pointer me-2" type="checkbox" value="" id="AcceptT&C " checked={acceptTnC} onChange={(e) => setAcceptTnC(e.target.checked)}/>
+                                        <label className="form-check-label text-slate-400 cursor-pointer" htmlFor="AcceptT&C">I Accept <span href="" className="text-amber-400"> <span onClick={redirectTerms}>Terms of Service</span> & <span onClick={redirectPrivacy}>Privacy Policy</span></span></label>
                                     </div>
                                 </div>
     
