@@ -26,7 +26,7 @@ const Pricing = () => {
   const freeData = `{"type": "${FreeType}", "cost": "${FreeCost}", "time": "${FreeTime}", "one": "Generate free Course", "two": "Create Unlimited Course", "three": "Video & Theory Course", "four": "5 Sub-Topics", "five": "Theory & Image Course"}`;
   const parsedFreeData = JSON.parse(freeData);
 
-  const monthData = `{"type": "${MonthType}", "cost": "${MonthCost}", "time": "/${MonthTime}", "one": "Create 5 Courses/Month", "two": "Video & Theory Course", "three": "AI Teacher", "four": "1 Month Access", "five": "Generate 10 Sub-Topics"}`;
+  const monthData = `{"type": "${MonthType}", "cost": "${MonthCost}", "time": "/${MonthTime}", "one": "Create 3 Courses/Month", "two": "Video & Theory Course", "three": "AI Teacher", "four": "1 Month Access", "five": "Generate 10 Sub-Topics"}`;
   const parsedMonthData = JSON.parse(monthData);
 
   const YearData = `{"type": "${YearType}", "cost": "${YearCost}", "time": "/${YearTime}", "one": "  10 Courses/Month", "two": "AI Teacher", "three": "PMC Community Early Access", "four": "Generate  10 Sub-Topics", "five": "Video & Theory Course"}`;

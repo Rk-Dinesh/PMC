@@ -143,7 +143,7 @@ const ForgotPassword = () => {
                 <div className="container relative">
                     <div className="md:flex justify-end">
                         <div className="lg:w-1/3 md:w-2/4">
-                            <div className="rounded shadow bg-white dark:bg-slate-900 p-6">
+                            <div className="rounded shadow bg-slate-900 p-6">
                             <img src={Logo} alt="" className='w-16 h-16' />
     
                                 <h5 className="mt-6 text-xl font-semibold text-white">Forgot password</h5>

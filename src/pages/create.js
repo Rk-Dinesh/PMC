@@ -265,25 +265,21 @@ const Create = () => {
                 } else {
                   showToast('Your monthly plan has reached the limit of navigations. Please upgrade to yearly plan for unlimited access.');
                 }
-              }else if (type === 'Yearly Plan' ) {
-                // const currentMonth = new Date().getMonth();
-                // const coursesThisMonth = courses.filter(course => new Date(course.date).getMonth() === currentMonth);
-
-                // if (coursesThisMonth.length < 10 && monthlyNavigationCount > 0) {
-                //     setMonthlyNavigationCount(monthlyNavigationCount - 1);
-                //     console.log(monthlyNavigationCount);
-                //    await updateCount();
-                    navigate('/topics', {
-                      state: {
-                        jsonData: parsedJson,
-                        mainTopic: mainTopic.toLowerCase(),
-                        type: selectedType.toLowerCase()
-                      }
-                    });
-                //   } else {
-                //     setProcessing(false);
-                //     showToast('You have reached the limit of 10 courses for this month.');
-                //   }
+              }else if (type === 'Monthly Plan Pro' && new Date(endDate * 1000) > new Date() ) {
+                if (monthlyNavigationCount > 0) {
+                  setMonthlyNavigationCount(monthlyNavigationCount - 1);
+                  console.log(monthlyNavigationCount);
+                 await updateCount();
+                  navigate('/topics', {
+                    state: {
+                      jsonData: parsedJson,
+                      mainTopic: mainTopic.toLowerCase(),
+                      type: selectedType.toLowerCase()
+                    }
+                  });
+                } else {
+                  showToast('Your monthly plan has reached the limit of navigations. Please upgrade to yearly plan for unlimited access.');
+                }
               } else {
                 navigate('/topics', {
                   state: {

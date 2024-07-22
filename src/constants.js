@@ -22,9 +22,9 @@ export const MonthCost = 1;
 export const MonthTime = 'month';
 
 //YEARLY 
-export const YearType = 'Yearly Plan';
-export const YearCost = 20;
-export const YearTime = 'year';
+export const YearType = 'Monthly Plan Pro';
+export const YearCost = 5;
+export const YearTime = 'month';
 
 //TESTIMONIAL
 export const review = "The AI Course Generator revolutionized my content creation process, providing accurate and relevant topics effortlessly. It's a time-saving powerhouse that enhances the quality and relevance of my courses. A must-have tool for educators seeking efficiency and impactful online learning experiences.";

@@ -132,7 +132,7 @@ const SlideSix = () => {
 
                   <li className="flex items-center mt-2 text-white font-semibold">
                     <FiCheckCircle className="text-green-600 h-[18px] w-[18px] me-2" />
-                    Generate 5 Courses/Month
+                    Generate 3 Courses/Month
                   </li>
                   <li className="flex items-center mt-2 text-white font-semibold">
                     <FiCheckCircle className="text-green-600 h-[18px] w-[18px] me-2" />{" "}
@@ -157,7 +157,7 @@ const SlideSix = () => {
             <div className="relative overflow-hidden rounded-md shadow shadow-gray-800">
               <div className="p-6">
                 <h5 className="text-2xl leading-normal font-semibold  text-white">
-                  Yearly
+                  Monthly Pro
                 </h5>
                 <p className="text-slate-400 mt-2">
                   For growing & established creators
@@ -176,7 +176,7 @@ const SlideSix = () => {
                         className="text-5xl font-semibold mb-0 ms-1  text-white"
                         id="pro-amt"
                       >
-                        20
+                        5
                       </p>
                       <p className="text-slate-400 uppercase text-xs">
                         per month

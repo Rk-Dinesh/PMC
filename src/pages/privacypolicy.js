@@ -3,7 +3,7 @@ import Header from '../components/header';
 import Footers from '../components/footers';
 import { serverURL } from '../constants';
 import axios from 'axios';
-import StyledText from '../components/styledText';
+
 
 const PrivacyPolicy = () => {
 
