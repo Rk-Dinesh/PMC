@@ -202,7 +202,7 @@ const SlideSix = () => {
 
                   <li className="flex items-center mt-2 text-white font-semibold">
                     <FiCheckCircle className="text-green-600 h-[18px] w-[18px] me-2" />
-                    Generate 10 Courses/Month
+                    Generate 20 Courses/Month
                   </li>
                   <li className="flex items-center mt-2 text-white font-semibold">
                     <FiCheckCircle className="text-green-600 h-[18px] w-[18px] me-2" />{" "}

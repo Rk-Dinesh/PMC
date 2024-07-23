@@ -110,10 +110,10 @@ app.post('/api/countplan', async (req, res) => {
         const existingUser = await Count.findOne({ user });
         
         if (existingUser) {
-            // If the user already exists, update the count to 5
-            existingUser.count = 5;
+            // If the user already exists, update the count
+            existingUser.count = count;
             await existingUser.save();
-            return res.json({ success: true, message: 'Count updated to 5 for existing user' });
+            return res.json({ success: true, message: 'Count updated  for existing user' });
         }
 
         // If no document is found, create a new one

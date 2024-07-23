@@ -43,7 +43,7 @@ export const razorpayPlanIdTwo = "";
 
 //STRIPE
 export const stripePlanIdOne = "price_1Pd8mq01PbsRdqnLHOa9bhU1";
-export const stripePlanIdTwo = "price_1PduXT01PbsRdqnLVEkLsDGb";
+export const stripePlanIdTwo = "price_1PfbZK01PbsRdqnLRiN4vScM";
 
 //PAYSTACK
 export const paystackPlanIdOne = "";

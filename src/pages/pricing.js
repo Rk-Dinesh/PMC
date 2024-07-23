@@ -29,7 +29,7 @@ const Pricing = () => {
   const monthData = `{"type": "${MonthType}", "cost": "${MonthCost}", "time": "/${MonthTime}", "one": "Create 3 Courses/Month", "two": "Video & Theory Course", "three": "AI Teacher", "four": "1 Month Access", "five": "Generate 10 Sub-Topics"}`;
   const parsedMonthData = JSON.parse(monthData);
 
-  const YearData = `{"type": "${YearType}", "cost": "${YearCost}", "time": "/${YearTime}", "one": "  10 Courses/Month", "two": "AI Teacher", "three": "PMC Community Early Access", "four": "Generate  10 Sub-Topics", "five": "Video & Theory Course"}`;
+  const YearData = `{"type": "${YearType}", "cost": "${YearCost}", "time": "/${YearTime}", "one": "  20 Courses/Month", "two": "AI Teacher", "three": "PMC Community Early Access", "four": "Generate  10 Sub-Topics", "five": "Video & Theory Course"}`;
   const parsedYearData = JSON.parse(YearData);
 
   const navigate = useNavigate();

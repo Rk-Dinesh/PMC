@@ -263,7 +263,7 @@ const Create = () => {
                     }
                   });
                 } else {
-                  showToast('Your monthly plan has reached the limit of navigations. Please upgrade to yearly plan for unlimited access.');
+                  showToast('Your monthly plan has reached the limit. Please upgrade to Monthly plan or Monthly Pro plan for access.');
                 }
               }else if (type === 'Monthly Plan Pro' && new Date(endDate * 1000) > new Date() ) {
                 if (monthlyNavigationCount > 0) {
@@ -278,7 +278,7 @@ const Create = () => {
                     }
                   });
                 } else {
-                  showToast('Your monthly plan has reached the limit of navigations. Please upgrade to yearly plan for unlimited access.');
+                  showToast('Your monthly plan has reached the limit. Please upgrade to Monthly plan or Monthly Pro plan for access.');
                 }
               } else {
                 navigate('/topics', {

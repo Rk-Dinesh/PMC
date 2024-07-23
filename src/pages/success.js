@@ -42,7 +42,7 @@ const Success = () => {
         const user = sessionStorage.getItem('uid');
         const dataToSend = {
           user: user,
-          count: 10
+          count: 20
         };
       
         const postURL = serverURL + '/api/countplan';
