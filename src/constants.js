@@ -4,7 +4,7 @@ export const company = 'SeenIT PTY LTD';
 export const websiteURL = 'https://pickmycourse.io';
 export const serverURL = 'https://pickmycourse.onrender.com';
 export const logo = 'https://firebasestorage.googleapis.com/v0/b/pick-my-course-ai.appspot.com/o/PMC_logos.png?alt=media&token=e4c3ed9b-c085-4162-ad6b-1e889b36b4bf';
-export const razorpayEnabled = false;
+export const razorpayEnabled = true;
 export const paypalEnabled = false;
 export const stripeEnabled = true;
 export const paystackEnabled = false;
@@ -37,9 +37,9 @@ export const paypalPlanIdOne = "";
 export const paypalPlanIdTwo = "";
 
 //RAZORPAY
-export const razorpayKeyId = "";
-export const razorpayPlanIdOne = "";
-export const razorpayPlanIdTwo = "";
+export const razorpayKeyId = "rzp_live_PwFLUg2b6qe1uU";
+export const razorpayPlanIdOne = "plan_OeQPnoAdFoLB7m";
+export const razorpayPlanIdTwo = "plan_OeQRGvYfJH2OK4";
 
 //STRIPE
 export const stripePlanIdOne = "price_1Pd8mq01PbsRdqnLHOa9bhU1";

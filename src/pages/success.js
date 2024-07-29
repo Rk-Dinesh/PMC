@@ -114,11 +114,17 @@ const Success = () => {
                     });
                 } else if (sessionStorage.getItem('method') === 'razorpay') {
                     const postURL = serverURL + '/api/razorapydetails';
+                    const plan = sessionStorage.getItem('plan')
                     await axios.post(postURL, dataToSend).then(res => {
                         setJsonData(res.data);
                         sessionStorage.setItem('type', sessionStorage.getItem('plan'));
                         setIsLoading(false);
                         sendEmail(res.data);
+                        if(plan === "Monthly Plan"){
+                            countmonthly()
+                        }else{
+                            countyearly()
+                        }
                     });
                 }
             } catch (error) {
