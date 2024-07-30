@@ -18,7 +18,13 @@ const Footers = () => {
   function redirectTerms() {
     navigate("/terms");
   }
-
+  function redirectCancel() {
+    navigate("/cancellation");
+  }
+  
+  function redirectRefund() {
+    navigate("/refund");
+  }
   function redirectPrivacy() {
     navigate("/privacy");
   }
@@ -35,14 +41,20 @@ const Footers = () => {
           <p className="text-black  font-bold  mx-4 dark:text-white" onClick={redirectContact}>
               Home
             </p>
-            {/* <p className="text-black font-bold mx-4 dark:text-white" onClick={redirectAbout}>
+            <p className="text-black font-bold mx-4 dark:text-white" onClick={redirectAbout}>
               About
-            </p> */}
+            </p>
             <p className="text-black  font-bold  mx-4 dark:text-white" onClick={redirectPrivacy}>
               Privacy Policy
             </p>
             <p className="text-black  font-bold  mx-4 dark:text-white " onClick={redirectTerms}>
-              Terms
+              Terms & Conditions
+            </p>
+            <p className="text-black  font-bold  mx-4 dark:text-white " onClick={redirectCancel}>
+              Cancellation Policy
+            </p>
+            <p className="text-black  font-bold  mx-4 dark:text-white " onClick={redirectRefund}>
+              Refund Policy
             </p>
            
           </Footer.LinkGroup>
@@ -51,7 +63,7 @@ const Footers = () => {
         <Footer.Copyright
           className="text-black dark:text-white font-bold"
           href={websiteURL}
-          by={company}
+          by={'Powered by Hackwit Technologies Private Limited'}
           year={2024}
         />
       </div>
