@@ -132,12 +132,23 @@ const Manage = () => {
                     navigate("/pricing");
                 });
             } else {
-                const postURL = serverURL + '/api/razorpaycancel';
+                // const postURL = serverURL + '/api/razorpaycancel';
+                // await axios.post(postURL, dataToSend).then(res => {
+                //     showToast("Subscription Cancelled");
+                //     sessionStorage.setItem('type', 'free');
+                //     navigate("/pricing");
+                // });
+                const dataToSend = {
+                    user: sessionStorage.getItem('uid')
+                };
+
+                const postURL = serverURL + '/razorpaycancel';
                 await axios.post(postURL, dataToSend).then(res => {
                     showToast("Subscription Cancelled");
                     sessionStorage.setItem('type', 'free');
                     navigate("/pricing");
                 });
+                
             }
         } catch (error) {
             cancelSubscription();

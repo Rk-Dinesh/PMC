@@ -20,10 +20,10 @@ const Create = () => {
     const navigate = useNavigate();
     const [endDate, setEndDate] = useState('')
     const [courses, setCourses] = useState([]);
-    const [monthlyNavigationCount, setMonthlyNavigationCount] = useState(0);
+    const [Count, setCount] = useState(0)
 
     let type = sessionStorage.getItem('type');
-
+    const user = sessionStorage.getItem('uid');
  
 
       useEffect(() => {
@@ -32,9 +32,10 @@ const Create = () => {
             if (userType !== 'free') {
                 setPaidMember(true);
                 setLableText('Select number of sub topics');
-                await getDetails();
+                await getCount();
                 await getCourse();
-                await getMonthlyNavigationCount();
+                await getDetails();
+               
             } else {
                 await getCourse();
             }
@@ -42,6 +43,33 @@ const Create = () => {
 
         fetchData();
     }, []);
+
+
+    async function getCount() {
+       
+
+        const postURL = serverURL + `/api/getcountplan?user=${user}`;
+        try {
+            const response = await axios.get(postURL);
+            const responseData = response.data
+            console.log(responseData[0].count);
+            setCount(responseData[0].count)   
+        } catch (error) {
+           
+        }
+    };
+
+
+    async function getCourse() {
+        const postURL = serverURL + `/api/courses?userId=${user}`;
+        try {
+            const response = await axios.get(postURL);
+            console.log(response.data);
+            setCourses(response.data);
+        } catch (error) {
+           
+        }
+    };
 
     async function getDetails() {
         const dataToSend = {
@@ -58,53 +86,12 @@ const Create = () => {
         }
     }
 
-    async function getCourse() {
-        
-        const userId = sessionStorage.getItem('uid');
-        console.log(userId);
-
-        const postURL = serverURL + `/api/courses?userId=${userId}`;
-        try {
-            const response = await axios.get(postURL);
-            console.log(response.data);
-            setCourses(response.data);
-            
-            
-        } catch (error) {
-           
-        }
-    };
-
-    async function getMonthlyNavigationCount() {
-        
-        const userId = sessionStorage.getItem('uid');
-        console.log(userId);
-
-        const postURL = serverURL + `/api/getcountplan?user=${userId}`;
-        try {
-            const response = await axios.get(postURL);
-            const responseData = response.data
-            console.log(responseData);
-            console.log(responseData[0].count);
-            setMonthlyNavigationCount(responseData[0].count);
-            
-            
-        } catch (error) {
-           
-        }
-    };
-
-
      const updateCount = async () => {
-        const user = sessionStorage.getItem('uid');
-        
-        const dataToSend = {
-          user: user,
-          count: monthlyNavigationCount - 1
-        };
 
-        console.log("hello",dataToSend);
-      
+        const dataToSend = {
+            user: sessionStorage.getItem('uid')
+        };
+             
         const postURL = serverURL + '/api/updatecount';
         try {
           const response = await axios.post(postURL, dataToSend);
@@ -250,10 +237,8 @@ const Create = () => {
               // Check the type of subscription and the end date before navigating
               if (type === 'free' && courses.length >= 1) {
                 showToast('Please subscribe to access more courses.');
-            } else if (type === 'Monthly Plan' && new Date(endDate * 1000) > new Date() ) {
-                if (monthlyNavigationCount > 0) {
-                  setMonthlyNavigationCount(monthlyNavigationCount - 1);
-                  console.log(monthlyNavigationCount);
+            } else if (type === 'Monthly Plan'  ) {
+                if (Count > 0) {
                  await updateCount();
                   navigate('/topics', {
                     state: {
@@ -265,10 +250,9 @@ const Create = () => {
                 } else {
                   showToast('Your monthly plan has reached the limit. Please upgrade to Monthly plan or Monthly Pro plan for access.');
                 }
-              }else if (type === 'Monthly Plan Pro' && new Date(endDate * 1000) > new Date() ) {
-                if (monthlyNavigationCount > 0) {
-                  setMonthlyNavigationCount(monthlyNavigationCount - 1);
-                  console.log(monthlyNavigationCount);
+              }else if (type === 'Monthly Plan Pro'  ) {
+                if (Count > 0) {
+               
                  await updateCount();
                   navigate('/topics', {
                     state: {

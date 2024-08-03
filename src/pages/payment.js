@@ -180,6 +180,7 @@ const Payment = () => {
                 const jsonRes = validateRes.data;
                 sessionStorage.setItem('type', sessionStorage.getItem('plan'));
                 console.log(jsonRes);
+                navigate('/success');
               } catch (validateError) {
                 console.error("Validation error:", validateError);
               }

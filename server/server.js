@@ -151,6 +151,26 @@ app.post("/order", async (req, res) => {
       res.status(500).json({ msg: "Internal server error" });
     }
   });
+
+  app.post('/razorpaycancel', async (req, res) => {
+    const { user} = req.body;
+
+    try {
+        const result = await User.findOneAndUpdate(
+            { _id: user },
+            { $set: { type: "free" } },
+            { new: true }  
+        );
+
+        if (result) {
+            res.json({ success: true, message: 'type updated successfully' });
+        } else {
+            res.status(404).json({ success: false, message: 'User not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+});
   
 
 //REQUEST
@@ -181,12 +201,13 @@ app.post('/api/countplan', async (req, res) => {
 
 
 app.post('/api/updatecount', async (req, res) => {
-    const { user, count } = req.body;
+    const { user } = req.body;
 
     try {
+        const replace = await Count.findOne({ user });
         const result = await Count.findOneAndUpdate(
             { user: user },
-            { $set: { count: count } },
+            { $set: { count:  replace.count-1 } },
             { new: true }  
         );
 

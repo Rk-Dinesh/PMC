@@ -132,15 +132,16 @@ const Header = ({ isHome }) => {
           <span onClick={redirectTerms} className="text-gray-300 hover:text-amber-500">
           Terms Of Service
           </span>
-          <span onClick={redirectContact} className="text-gray-300 hover:text-amber-500">
+          {/* <span onClick={redirectContact} className="text-gray-300 hover:text-amber-500">
           Contact Us
-          </span>
-          {/* <a
-          href='https://hackwittechnologies.com/contact.php' 
+          </span> */}
+          <a
+          href='https://seenit.co/Contact.php' 
           target="_blank" 
           className="text-gray-300 hover:text-amber-500">
           Contact Us
-          </a> */}
+          </a>
+
          
         </div>
         {/* Sign In and Sign Up on the right */}
