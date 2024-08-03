@@ -3,7 +3,7 @@ import Header from '../components/header';
 import Footers from '../components/footers';
 import { Button, Label, Select } from 'flowbite-react';
 import axios from 'axios';
-import { amountInZarOne, amountInZarTwo, name, paypalEnabled, paypalPlanIdOne, paypalPlanIdTwo, paystackEnabled, paystackPlanIdOne, paystackPlanIdTwo, razorpayEnabled, razorpayPlanIdOne, razorpayPlanIdTwo, serverURL, stripeEnabled, stripePlanIdOne, stripePlanIdTwo } from '../constants';
+import { amountInZarOne, amountInZarTwo, name, paypalEnabled, paypalPlanIdOne, paypalPlanIdTwo, paystackEnabled, paystackPlanIdOne, paystackPlanIdTwo, razorpayEnabled, razorpayPlanIdOne, razorpayPlanIdTwo, serverURL, stripeEnabled, stripePlanIdOne, stripePlanIdTwo ,razorpayKeyId} from '../constants';
 import { useLocation, useNavigate } from 'react-router-dom';
 import countryList from 'react-select-country-list'
 import { toast } from 'react-toastify';
@@ -85,34 +85,130 @@ const Payment = () => {
         }
     }
 
+    // async function startRazorpay() {
+
+    //     if (!email || !mName || !lastName || !post || !address || !country || !admin) {
+    //         showToast('Please fill in all required fields');
+    //         return;
+    //     }
+
+    //     let fullAddress = address + ' ' + admin + ' ' + post + ' ' + country;
+    //     let planId = razorpayPlanIdTwo;
+    //     if (plan === 'Monthly Plan') {
+    //         planId = razorpayPlanIdOne;
+    //     }
+    //     const dataToSend = {
+    //         plan: planId,
+    //         email: email,
+    //         fullAddress: fullAddress
+    //     };
+    //     try {
+    //         const postURL = serverURL + '/api/razorpaycreate';
+    //         const res = await axios.post(postURL, dataToSend);
+    //         sessionStorage.setItem('method', 'razorpay');
+    //         sessionStorage.setItem('plan', plan);
+    //         window.open(res.data.short_url, '_blank');
+    //         navigate('/pending', { state: { sub: res.data.id, link: res.data.short_url } });
+    //     } catch (error) {
+    //         //DO NOTHING
+    //     }
+    // }
+
+    
+
     async function startRazorpay() {
-
         if (!email || !mName || !lastName || !post || !address || !country || !admin) {
-            showToast('Please fill in all required fields');
-            return;
+          showToast('Please fill in all required fields');
+          return;
         }
-
-        let fullAddress = address + ' ' + admin + ' ' + post + ' ' + country;
-        let planId = razorpayPlanIdTwo;
+      
+        let amount;
+        let currency;
+        let receipt;
+      
         if (plan === 'Monthly Plan') {
-            planId = razorpayPlanIdOne;
+          amount = 100;
+          currency = "INR";
+          receipt = "test_monthly";
+        } else {
+          amount = 200;
+          currency = "INR";
+          receipt = "test_yearly";
         }
+      
         const dataToSend = {
-            plan: planId,
-            email: email,
-            fullAddress: fullAddress
+          amount: amount,
+          currency: currency,
+          receipt: receipt,
         };
+      
         try {
-            const postURL = serverURL + '/api/razorpaycreate';
-            const res = await axios.post(postURL, dataToSend);
-            sessionStorage.setItem('method', 'razorpay');
-            sessionStorage.setItem('plan', plan);
-            window.open(res.data.short_url, '_blank');
-            navigate('/pending', { state: { sub: res.data.id, link: res.data.short_url } });
+          const postURL = serverURL + '/order';
+          const res = await axios.post(postURL, dataToSend);
+      
+          const order = res.data;
+          sessionStorage.setItem('razorpay', res.data.id);
+          sessionStorage.setItem('method', 'razorpay');
+          sessionStorage.setItem('plan', plan);
+          console.log(order);
+      
+          var options = {
+            key: razorpayKeyId,
+            amount: amount * 100,
+            currency: currency,
+            name: "Hackwit Technologies",
+            description: "PickMyCourse Subscription",
+            image: "https://example.com/your_logo",
+            order_id: order.id,
+            handler: async function (response) {
+              const body = {
+                ...response,
+                uid: sessionStorage.getItem('uid'), 
+                plan: sessionStorage.getItem('plan'), 
+              };
+      
+              try {
+                const validateRes = await axios.post(
+                  `${serverURL}/order/validate`,
+                  body,
+                  {
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                  }
+                );
+                const jsonRes = validateRes.data;
+                sessionStorage.setItem('type', sessionStorage.getItem('plan'));
+                console.log(jsonRes);
+              } catch (validateError) {
+                console.error("Validation error:", validateError);
+              }
+            },
+            prefill: {
+              name: mName,
+              email: email,
+              contact: "0000000000",
+            },
+            notes: {
+              address: "Razorpay Corporate Office",
+            },
+            theme: {
+              color: "#3399cc",
+            },
+          };
+      
+          var rzp1 = new window.Razorpay(options);
+          rzp1.on("payment.failed", function (response) {
+            toast.error("Payment failed");
+          });
+      
+          rzp1.open();
+      
         } catch (error) {
-            //DO NOTHING
+          // DO NOTHING
         }
-    }
+      }
+      
 
     async function startPayPal() {
 
