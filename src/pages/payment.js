@@ -127,11 +127,11 @@ const Payment = () => {
         let receipt;
       
         if (plan === 'Monthly Plan') {
-          amount = 100;
+          amount = 9900;
           currency = "INR";
           receipt = "test_monthly";
         } else {
-          amount = 200;
+          amount = 49900;
           currency = "INR";
           receipt = "test_yearly";
         }
@@ -156,9 +156,9 @@ const Payment = () => {
             key: razorpayKeyId,
             amount: amount * 100,
             currency: currency,
-            name: "Hackwit Technologies",
+            name: "PickMyCourse",
             description: "PickMyCourse Subscription",
-            image: "https://example.com/your_logo",
+            image: "https://hackwittechnologies.com/assets/imgs/pmclogo.png",
             order_id: order.id,
             handler: async function (response) {
               const body = {
@@ -328,7 +328,7 @@ const Payment = () => {
                                 : <></>}
                             {paypalEnabled ? <Button className='my-2 items-center justify-center text-center dark:bg-white dark:text-black bg-black text-white font-bold rounded-none w-full enabled:hover:bg-black enabled:focus:bg-black enabled:focus:ring-transparent dark:enabled:hover:bg-white dark:enabled:focus:bg-white dark:enabled:focus:ring-transparent' onClick={startPayPal}>PayPal</Button>
                                 : <></>}
-                            {razorpayEnabled ? <Button className='my-2 items-center justify-center text-center dark:bg-white dark:text-black bg-black text-white font-bold rounded-none w-full enabled:hover:bg-black enabled:focus:bg-black enabled:focus:ring-transparent dark:enabled:hover:bg-white dark:enabled:focus:bg-white dark:enabled:focus:ring-transparent' onClick={startRazorpay}>Razorpay ( For Domestic pay)</Button>
+                            {razorpayEnabled ? <Button className='my-2 items-center justify-center text-center dark:bg-white dark:text-black bg-black text-white font-bold rounded-none w-full enabled:hover:bg-black enabled:focus:bg-black enabled:focus:ring-transparent dark:enabled:hover:bg-white dark:enabled:focus:bg-white dark:enabled:focus:ring-transparent' onClick={startRazorpay}>Razorpay ( For Indian Pay)</Button>
                                 : <></>}
                             {paystackEnabled ? <Button className='my-2 items-center justify-center text-center dark:bg-white dark:text-black bg-black text-white font-bold rounded-none w-full enabled:hover:bg-black enabled:focus:bg-black enabled:focus:ring-transparent dark:enabled:hover:bg-white dark:enabled:focus:bg-white dark:enabled:focus:ring-transparent' onClick={startPaystack}>Paystack</Button>
                                 : <></>}
