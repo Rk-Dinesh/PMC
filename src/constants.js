@@ -1,8 +1,8 @@
 //BRAND
 export const name = 'PickMyCourse';
 export const company = 'SeenIT PTY LTD';
-export const websiteURL = 'https://pickmycourse.io';
-export const serverURL = 'https://pickmycourse.onrender.com';
+export const websiteURL = 'http://localhost:3000';
+export const serverURL = 'http://localhost:5000';
 export const logo = 'https://firebasestorage.googleapis.com/v0/b/pick-my-course-ai.appspot.com/o/PMC_logos.png?alt=media&token=e4c3ed9b-c085-4162-ad6b-1e889b36b4bf';
 export const razorpayEnabled = true;
 export const paypalEnabled = false;
@@ -18,12 +18,12 @@ export const FreeTime = '';
 
 //MONTHLY 
 export const MonthType = 'Monthly Plan';
-export const MonthCost = 1;
+export const MonthCost = 99;
 export const MonthTime = 'month';
 
 //YEARLY 
 export const YearType = 'Monthly Plan Pro';
-export const YearCost = 5;
+export const YearCost = 499;
 export const YearTime = 'month';
 
 //TESTIMONIAL

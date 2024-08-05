@@ -50,12 +50,12 @@ const Footers = () => {
             <p className="text-black  font-bold  mx-4 dark:text-white " onClick={redirectTerms}>
               Terms & Conditions
             </p>
-            {/* <p className="text-black  font-bold  mx-4 dark:text-white " onClick={redirectCancel}>
+            <p className="text-black  font-bold  mx-4 dark:text-white " onClick={redirectCancel}>
               Cancellation Policy
             </p>
             <p className="text-black  font-bold  mx-4 dark:text-white " onClick={redirectRefund}>
               Refund Policy
-            </p> */}
+            </p>
            
           </Footer.LinkGroup>
         </div>
@@ -63,7 +63,7 @@ const Footers = () => {
         <Footer.Copyright
           className="text-black dark:text-white font-bold"
           href={websiteURL}
-          by={company}
+          by={'Powered by Hackwit Technologies Private Limited'}
           year={2024}
         />
       </div>

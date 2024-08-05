@@ -35,7 +35,7 @@ const SlideSix = () => {
                   For anyone to try AI video creation
                 </p>
                 <div className="flex mt-4">
-                  <span className="text-lg font-semibold text-white">$</span>
+                  <span className="text-lg font-semibold text-white">Rs.</span>
                   <span className="text-5xl font-semibold mb-0 ms-1 text-white">
                     0
                   </span>
@@ -95,7 +95,7 @@ const SlideSix = () => {
 
                 <div className="relative">
                   <div className="flex mt-4">
-                    <span className="text-lg font-semibold text-white">$</span>
+                    <span className="text-lg font-semibold text-white">Rs.</span>
                     <span className="">
                       <input
                         type="hidden"
@@ -106,7 +106,7 @@ const SlideSix = () => {
                         className="text-5xl font-semibold mb-0 ms-1  text-white"
                         id="busi-amt"
                       >
-                        1
+                        99
                       </p>
                       <p className="text-slate-400 uppercase text-xs">
                         per month
@@ -165,7 +165,7 @@ const SlideSix = () => {
 
                 <div className="relative">
                   <div className="flex mt-4">
-                    <span className="text-lg font-semibold  text-white">$</span>
+                    <span className="text-lg font-semibold  text-white">Rs.</span>
                     <span className="">
                       <input
                         type="hidden"
@@ -176,7 +176,7 @@ const SlideSix = () => {
                         className="text-5xl font-semibold mb-0 ms-1  text-white"
                         id="pro-amt"
                       >
-                        5
+                        499
                       </p>
                       <p className="text-slate-400 uppercase text-xs">
                         per month

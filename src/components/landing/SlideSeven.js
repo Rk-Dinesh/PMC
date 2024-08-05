@@ -141,10 +141,9 @@ const SlideSeven = () => {
           <div className="grid grid-cols-1">
             <div className="text-center flex justify-center items-center">
             <p className="text-gray-400 flex items-center">
-                © PickMyCourse Design with{" "}
-                <IoIosHeart className="text-orange-700 mx-1" /> by
-                <a href="https://seenit.co/" target="_blank" className="text-reset ml-1">
-                  SeenIT PTY LTD
+                © Powered by 
+                <a href="https://hackwittechnologies.com/" target="_blank" className="text-reset ml-1">
+                Hackwit Technologies Private Limited
                 </a>
                 .
               </p>
