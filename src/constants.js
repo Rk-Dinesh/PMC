@@ -18,12 +18,12 @@ export const FreeTime = '';
 
 //MONTHLY 
 export const MonthType = 'Monthly Plan';
-export const MonthCost = 99;
+export const MonthCost = 1;
 export const MonthTime = 'month';
 
 //YEARLY 
 export const YearType = 'Monthly Plan Pro';
-export const YearCost = 499;
+export const YearCost = 5;
 export const YearTime = 'month';
 
 //TESTIMONIAL

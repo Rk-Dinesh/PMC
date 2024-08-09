@@ -58,8 +58,8 @@ const Contact = () => {
         <div className='h-screen flex flex-col'>
             <Header isHome={true} className="sticky top-0 z-50" />
             <div className='dark:bg-black flex-1'>
-                <div className='flex-1 flex flex-col items-center justify-center py-10'>
-                    {/* <form onSubmit={contactSubmit} className="max-w-sm m-auto py-4 no-scrollbar">
+                <div className='flex-1 flex items-center justify-center py-10'>
+                    <form onSubmit={contactSubmit} className="max-w-sm m-auto py-4 no-scrollbar">
                         <p className='text-center font-black text-4xl text-black dark:text-white'>Contact</p>
                         <p className='text-center font-normal text-black py-4 dark:text-white'>Enter your details and ask your query</p>
                         <div className='py-6'>
@@ -99,22 +99,8 @@ const Contact = () => {
                             </div>
                             <Button type='submit' isProcessing={processing} processingSpinner={<AiOutlineLoading className="h-6 w-6 animate-spin" />} className='my-2 items-center justify-center text-center dark:bg-white dark:text-black bg-black text-white font-bold rounded-none w-full enabled:hover:bg-black enabled:focus:bg-black enabled:focus:ring-transparent dark:enabled:hover:bg-white dark:enabled:focus:bg-white dark:enabled:focus:ring-transparent'>Submit</Button>
                         </div>
-                    </form> */}
-                    <p className='text-center font-black text-4xl text-black dark:text-white'>Contact Us</p>
-                    <p className='text-black mb-2 mt-12 text-center max-md:text-xs max-w-4xl  dark:text-white '>At Hackwit Technologies, we value your feedback and would love to hear from you. Whether you have a question, a suggestion, or just want to say hello, we're here to listen.</p>
+                    </form>
                 </div>
-                <div class="max-w-md mx-auto  md:max-w-2xl mt-4">
-  <div >
-   
-  <p className=' font-black text-2xl text-black dark:text-white mb-2'>Get In Touch</p>
-    
-    <div >
-      <p class="text-black  dark:text-white"><span className='text-xl font-semibold'>Address: </span> No 80, Thiyagi Natesan Street - 3, Ammapet, Salem - 636 003</p>
-      <p class="text-black  dark:text-white"><span className='text-xl font-semibold'>Phone: </span> +91 9566583600</p>
-      <p class="text-black  dark:text-white"><span className='text-xl font-semibold'>Email: </span> <a href="mailto:support@pickmycourse.io" class="text-indigo-500 hover:underline">support@pickmycourse.io</a></p>
-    </div>
-  </div>
-</div>
             </div>
             <Footers className="sticky bottom-0 z-50" />
         </div>
