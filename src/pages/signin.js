@@ -59,7 +59,7 @@ const SignIn = () => {
             showToast('Please fill in all required fields');
             return;
         }
-        const postURL = serverURL + '/api/signin';
+        const postURL = serverURL + '/api/signins';
         try {
             setProcessing(true);
             const response = await axios.post(postURL, { email, password });

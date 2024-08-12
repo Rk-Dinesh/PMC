@@ -91,49 +91,7 @@ const ForgotPassword = () => {
     };
 
     return (
-        // <Flowbite>
-        //     <div className="flex h-screen dark:bg-black no-scrollbar">
-
-        //         <div className="flex-1 overflow-y-auto no-scrollbar">
-
-        //             <Navbar fluid className='p-8 dark:bg-black'>
-        //                 <Navbar.Brand href={websiteURL} className="ml-1">
-        //                     <LogoComponent isDarkMode={storedTheme} />
-        //                     <span className="self-center whitespace-nowrap text-2xl font-black dark:text-white ">{name}</span>
-        //                 </Navbar.Brand>
-        //                 <DarkModeToggle />
-        //             </Navbar>
-
-        //             <form onSubmit={handleReset} className="max-w-sm m-auto py-9 no-scrollbar">
-
-        //                 <h1 className='text-center font-black text-5xl text-black dark:text-white'>Forgot Password</h1>
-        //                 <p className='text-center font-normal text-black py-4 dark:text-white'>Enter the registered email and a reset link will be sent to that email</p>
-
-        //                 <div className='py-10'>
-        //                     <div className='mb-6'>
-        //                         <div className="mb-2 block">
-        //                             <Label className="font-bold text-black dark:text-white" htmlFor="email1" value="Email" />
-        //                         </div>
-        //                         <input onChange={(e) => setEmail(e.target.value)} className='focus:ring-black focus:border-black border border-black font-normal bg-white rounded-none block w-full dark:bg-black dark:border-white dark:text-white' id="email1" type="email" />
-        //                     </div>
-
-        //                     <Button disabled={isTimerRunning} isProcessing={processing} processingSpinner={<AiOutlineLoading className="h-6 w-6 animate-spin" />} className='items-center justify-center text-center dark:bg-white dark:text-black bg-black text-white font-bold rounded-none w-full enabled:hover:bg-black enabled:focus:bg-black enabled:focus:ring-transparent dark:enabled:hover:bg-white dark:enabled:focus:bg-white dark:enabled:focus:ring-transparent' type="submit">Submit</Button>
-        //                     <p hidden={!isTimerRunning} className='text-center font-normal text-black py-2 dark:text-white'>Resend link again in {formattedTime} seconds</p>
-        //                     <p onClick={redirectSignUp} className='text-center font-normal text-black underline py-4  dark:text-white'>Already know password? SignIn</p>
-        //                 </div>
-
-        //             </form>
-        //         </div>
-
-        //         <div className="flex-1 hidden lg:flex items-center justify-center bg-gray-50 dark:bg-white">
-        //             <img
-        //                 src={img}
-        //                 className="h-full bg-cover bg-center p-9"
-        //                 alt="Background"
-        //             />
-        //         </div>
-        //     </div>
-        // </Flowbite>
+       
         <section className="relative overflow-hidden h-screen flex items-center bg-no-repeat bg-left bg-cover bg-fixed" style={{
             backgroundImage: `url(${AI})`,
             backgroundSize: 'cover',

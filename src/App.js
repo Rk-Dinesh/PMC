@@ -40,6 +40,7 @@ import RefundPolicy from './pages/refundpolicy';
 import BillingPolicy from './pages/billingpolicy';
 import Error from './pages/error';
 import Pending from './pages/pending';
+import VerifyPassword from './pages/verifypassword';
 
 function App() {
 
@@ -67,6 +68,7 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path='/forgot' element={<ForgotPassword />} />
+          <Route path='/verify/:token' element={<VerifyPassword />} />
           <Route path='/reset-password/:token' element={<ResetPassword />} />
           <Route path='/home' element={<Home />} />
           <Route path='/create' element={<Create />} />
