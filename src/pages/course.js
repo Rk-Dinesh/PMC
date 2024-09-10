@@ -789,7 +789,7 @@ const Course = () => {
                                 </div>
                             ))}
                         </div>
-                        <div className='flex flex-row -mt-52 items-center'>
+                        <div className='flex flex-row -mt-28 items-center'>
                             <input value={newMessage} placeholder='Ask Something...' onChange={(e) => setNewMessage(e.target.value)} className='h-12 focus:ring-black focus:border-black border border-black font-normal bg-white rounded-none block w-full dark:bg-black dark:border-white dark:text-white' type="text" />
                             <div onClick={sendMessage} className='h-12 text-black  dark:text-white ml-2 content-center'>
                                 <IoSend size={20} />
